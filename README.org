@@ -1,0 +1,31 @@
+
+* NixOS and Home Manager Configuration
+
+** Overview
+   This repository contains my personal NixOS and Home Manager configurations. 
+   It's structured as a Nix Flakes repository to ensure reproducible builds and easy 
+   management of my system and user-level settings.
+
+** Structure
+   - /system.nix/: Contains the system-wide NixOS configuration.
+   - /home.nix/: Holds the user-specific configuration managed by Home Manager.
+   - /flake.nix/: The central flake file defining inputs and outputs for NixOS and Home Manager.
+
+** Usage
+
+*** Prerequisites
+    - Nix with Flakes support enabled.
+
+*** Applying NixOS Configuration
+    Run the following command to apply the system configuration:
+    #+BEGIN_SRC sh
+    sudo nixos-rebuild switch --flake '.#my-system'
+    #+END_SRC
+    Replace /my-system/ with the appropriate label for your system configuration as defined in /flake.nix/.
+
+*** Applying Home Manager Configuration
+    To apply the Home Manager configuration for the user 'spiros', use:
+    #+BEGIN_SRC sh
+    home-manager switch --flake '.#spiros'
+    #+END_SRC
+

@@ -1,0 +1,23 @@
+
+# Emacs temporary files
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list/
+tramp
+.\#*
+
+# Emacs undo tree files
+*.~undo-tree~
+
+# Nix temporary files
+/nix/*
+/result
+/result-*
+/.nix-defexpr
+/.nix-channels
+
+# Home Manager temporary files
+/home-manager-result
