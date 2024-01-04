@@ -13,6 +13,7 @@
       pkgs.material-icons
       pkgs.weather-icons
       pkgs.fd
+      pkgs.lshw
     ];
 
     programs.git = {
