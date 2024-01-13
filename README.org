@@ -43,4 +43,11 @@ To apply the Home Manager configuration for the user 'spiros', use:
 home-manager switch --flake '.#spiros'
 #+END_SRC
 
-
+*** Clone dotfiles
+Can now use GitHub CLI to clone dotfile repos
+#+BEGIN_SRC sh
+cd ~
+gh repo auth login
+gh repo clone dotfiles
+gh repo clone vimfiles
+#+END_SRC
