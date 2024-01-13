@@ -19,9 +19,23 @@
 *** Applying NixOS Configuration
     Run the following command to apply the system configuration:
     #+BEGIN_SRC sh
-    sudo nixos-rebuild switch --flake '.#my-system'
+    nixos-rebuild switch --flake '.#my-system'
     #+END_SRC
     Replace /my-system/ with the appropriate label for your system configuration as defined in /flake.nix/.
+
+*** Install [[https://nix-community.github.io/home-manager/index.html][Home Manager]]
+    Run:
+    #+begin_src bash
+    cd ~/dotfiles_nix
+    nix build .#homeConfigurations.spiros.activationPackage
+    #+end_src
+
+    This will create the file `./result/activate` that can then be executed to install home-manager into the user environment. This is persistent across shells and system reboots.
+
+    Install home manager:
+    #+begin_src bash
+    ./result/activate
+    #+end_src
 
 *** Applying Home Manager Configuration
     To apply the Home Manager configuration for the user 'spiros', use:
