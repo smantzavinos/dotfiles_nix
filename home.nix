@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{config, pkgs, ...}: {
     home.username = "spiros";
     home.homeDirectory = "/home/spiros";
     home.stateVersion = "23.11"; # To figure this out you can comment out the line and see what version it expected.
@@ -8,12 +8,17 @@
       pkgs.cowsay
       pkgs.gh
       pkgs.jetbrains-mono
+      pkgs.font-awesome
       pkgs.emacs-all-the-icons-fonts
       # pkgs.awesome-terminal-fonts
       pkgs.material-icons
       pkgs.weather-icons
       pkgs.fd
       pkgs.lshw
+      pkgs.fzf
+      pkgs.fzf-zsh
+      pkgs.tmux
+      pkgs.zsh-powerlevel10k
     ];
 
     programs.git = {
@@ -39,4 +44,37 @@
         (load-file "/home/spiros/dotfiles/.emacs.d/init_local.el")
       '';
     };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    enableSyntaxHighlighting = true;
+
+    # Use Zplug for plugin management
+    initExtraBeforeCompInit = ''
+      source ${pkgs.zplug}/share/zplug/int.zsh
+
+      # Load Powerlevel10k theme
+      zplug "romkatv/powerlevel10k", as:theme, depth:1
+
+      # ... (other zplug plugins and settings)
+
+      # Load plugins and themes
+      zplug load
+    '';
+
+    # Source the Powerlevel10k configuration if it exists
+    initExtra = ''
+      [[ ! -f ${"$/home/spiros/.p10k.zsh"} ]] || source ${"/home/spiros/.p10k.zsh"}
+    '';
+
+    # Set Zsh as the default shell for the user
+    # loginShellInit = ''
+    #   # Your global Zsh configurations (if any)
+    # '';
+  };
+
+  xdg.configFile."zsh/.p10k.zsh".source = /home/spiros/.p10k.zsh;
+
 }
