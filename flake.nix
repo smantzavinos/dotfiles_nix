@@ -14,12 +14,12 @@
         defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
 
         # System configuration
-        nixosConfigurations = {
-            my-system = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                modules = [ ./system.nix ];
-            };
-        };
+        # nixosConfigurations = {
+        #     my-system = nixpkgs.lib.nixosSystem {
+        #         system = "x86_64-linux";
+        #         modules = [ ./system.nix ];
+        #     };
+        # };
 
         # Home configuration
         homeConfigurations = {
