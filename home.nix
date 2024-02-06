@@ -19,6 +19,7 @@
       pkgs.fzf-zsh
       pkgs.tmux
       pkgs.zsh-powerlevel10k
+      pkgs.zplug
     ];
 
     programs.git = {
@@ -49,11 +50,11 @@
     enable = true;
     enableCompletion = true;
     enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
 
     # Use Zplug for plugin management
     initExtraBeforeCompInit = ''
-      source ${pkgs.zplug}/share/zplug/int.zsh
+      source ${pkgs.zplug}/share/zplug/init.zsh
 
       # Load Powerlevel10k theme
       zplug "romkatv/powerlevel10k", as:theme, depth:1
@@ -66,7 +67,7 @@
 
     # Source the Powerlevel10k configuration if it exists
     initExtra = ''
-      [[ ! -f ${"$/home/spiros/.p10k.zsh"} ]] || source ${"/home/spiros/.p10k.zsh"}
+      [[ ! -f ${"~/dotfiles/zsh/.p10k.zsh"} ]] || source ${"~/dotfiles/zsh/.p10k.zsh"}
     '';
 
     # Set Zsh as the default shell for the user
@@ -75,6 +76,6 @@
     # '';
   };
 
-  xdg.configFile."zsh/.p10k.zsh".source = /home/spiros/.p10k.zsh;
+  # xdg.configFile."zsh/.p10k.zsh".source = home/spiros/.p10k.zsh;
 
 }
