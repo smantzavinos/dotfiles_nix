@@ -20,6 +20,7 @@
       pkgs.tmux
       pkgs.zsh-powerlevel10k
       pkgs.zplug
+      pkgs.oh-my-zsh
     ];
 
     programs.git = {
@@ -59,7 +60,22 @@
       # Load Powerlevel10k theme
       zplug "romkatv/powerlevel10k", as:theme, depth:1
 
-      # ... (other zplug plugins and settings)
+      # source ${pkgs.zplug}/share/zplug/init.zsh
+
+      # Load the Zplug plugins
+      zplug "plugins/git", from:oh-my-zsh
+      zplug "plugins/tmux", from:oh-my-zsh
+      zplug "asdf-vm/asdf", use:"asdf.plugin.zsh"
+      zplug "junegunn/fzf", as:command, use:"bin/*", hook-build:"./install --bin"
+      zplug "Aloxaf/fzf-tab", defer:2
+
+      # Install plugins if there are plugins that have not been installed yet
+      if ! zplug check --verbose; then
+          printf "Install? [y/N]: "
+          if read -q; then
+              echo; zplug install
+          fi
+      fi
 
       # Load plugins and themes
       zplug load
