@@ -21,6 +21,7 @@
       pkgs.zsh-powerlevel10k
       pkgs.zplug
       pkgs.oh-my-zsh
+      pkgs.alacritty
     ];
 
     programs.git = {
@@ -85,13 +86,14 @@
     initExtra = ''
       [[ ! -f ${"~/dotfiles/zsh/.p10k.zsh"} ]] || source ${"~/dotfiles/zsh/.p10k.zsh"}
     '';
-
-    # Set Zsh as the default shell for the user
-    # loginShellInit = ''
-    #   # Your global Zsh configurations (if any)
-    # '';
   };
 
-  # xdg.configFile."zsh/.p10k.zsh".source = home/spiros/.p10k.zsh;
+  xdg.configFile."alacritty/alacritty.yml".text = ''
+    shell:
+      program: /home/spiros/.nix-profile/bin/tmux
+      args:
+        - new-session
+        - zsh
+  '';
 
 }
