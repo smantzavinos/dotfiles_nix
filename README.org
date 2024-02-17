@@ -40,7 +40,7 @@ Install home manager:
 *** Applying Home Manager Configuration
 To apply the Home Manager configuration for the user 'spiros', use:
 #+BEGIN_SRC sh
-home-manager switch --flake '.#spiros'
+home-manager switch --flake .
 #+END_SRC
 
 *** Clone dotfiles
