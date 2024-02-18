@@ -19,7 +19,8 @@ management of my system and user-level settings.
 *** Applying NixOS Configuration
 Run the following command to apply the system configuration:
 #+BEGIN_SRC sh
-nixos-rebuild switch --flake '.#my-system'
+cd !/dotfile_nix/system
+sudo nixos-rebuild switch -I nixos-config=./configuration.nix
 #+END_SRC
 Replace /my-system/ with the appropriate label for your system configuration as defined in /flake.nix/.
 
