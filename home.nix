@@ -4,6 +4,11 @@
     home.stateVersion = "23.11"; # To figure this out you can comment out the line and see what version it expected.
     programs.home-manager.enable = true;
 
+    # Allow unfree packages
+    nixpkgs.config = {
+        allowUnfree = true;
+    };
+
     home.packages = [
       pkgs.cowsay
       pkgs.gh
@@ -22,6 +27,7 @@
       pkgs.zplug
       pkgs.oh-my-zsh
       pkgs.alacritty
+      pkgs.google-chrome
     ];
 
     programs.git = {
