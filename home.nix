@@ -19,6 +19,7 @@
       pkgs.material-icons
       pkgs.weather-icons
       pkgs.fd
+      pkgs.ripgrep
       pkgs.lshw
       pkgs.fzf
       pkgs.fzf-zsh
