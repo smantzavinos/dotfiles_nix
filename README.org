@@ -63,7 +63,11 @@ sudo nano /etc/nixos/configuration.nix
 #+END_SRC
 Add the options the packages install area.
 
-Also enable openssh support by uncommenting the line.
+~Optional if you want to copy ssh key with scp~
+Also enable openssh by finding and uncommenting the line with the following config:
+#+BEGIN_SRC sh
+services.openssh.enable = true;
+#+END_SRC
 
 Also enable flakes by adding:
 #+BEGIN_SRC sh
@@ -75,11 +79,11 @@ Save and close the file and install the updates with:
 sudo nixos-rebuild switch
 #+END_SRC
 **** Set up ssh keys
-Copy ssh keys to the system. Either by USB or scp (previous step enabled openssh).
+Copy ssh keys to the system. Either by USB or scp.
 
 Ensure key file permission are restrictive enough (required by ssh agent)
 #+BEGIN_SRC sh
-chmod 600 ~/.ssh/id_ed25519
+chmod 600 ~/.ssh/your_private_key
 #+END_SRC
 
 Load the key in to the agent
@@ -88,8 +92,12 @@ ssh-add ~/.ssh/your_private_key
 #+END_SRC
 
 **** Clone the config
-Clone repos using ssh keys. THis could be done with https if you are unable to get keys. The repos are publics.
+Clone repos uhing ssh keys. This could be done with https if you are unable to get keys. The repos are public.
 #+BEGIN_SRC sh
 git clone git@github.com:smantzavinos/dotfiles.git
+git clone git@github.com:smantzavinos/dotfiles_nix.git
+git clone git@github.com:smantzavinos/vimfiles.git
+git clone git@gitlab.com:smantzavinos/notes.git
 #+END_SRC
+**** 
 
