@@ -52,3 +52,44 @@ gh repo auth login
 gh repo clone dotfiles
 gh repo clone vimfiles
 #+END_SRC
+*** Update nixos version
+
+** Appendix
+*** Setting up NixOS
+**** Install git and vim
+Edit config to install git and vim.
+#+BEGIN_SRC sh
+sudo nano /etc/nixos/configuration.nix
+#+END_SRC
+Add the options the packages install area.
+
+Also enable openssh support by uncommenting the line.
+
+Also enable flakes by adding:
+#+BEGIN_SRC sh
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
+#+END_SRC
+
+Save and close the file and install the updates with:
+#+BEGIN_SRC sh
+sudo nixos-rebuild switch
+#+END_SRC
+**** Set up ssh keys
+Copy ssh keys to the system. Either by USB or scp (previous step enabled openssh).
+
+Ensure key file permission are restrictive enough (required by ssh agent)
+#+BEGIN_SRC sh
+chmod 600 ~/.ssh/id_ed25519
+#+END_SRC
+
+Load the key in to the agent
+#+BEGIN_SRC sh
+ssh-add ~/.ssh/your_private_key
+#+END_SRC
+
+**** Clone the config
+Clone repos using ssh keys. THis could be done with https if you are unable to get keys. The repos are publics.
+#+BEGIN_SRC sh
+git clone git@github.com:smantzavinos/dotfiles.git
+#+END_SRC
+
