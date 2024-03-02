@@ -29,6 +29,7 @@
       pkgs.oh-my-zsh
       pkgs.alacritty
       pkgs.google-chrome
+      pkgs.nix-prefetch-github
     ];
 
     programs.git = {
