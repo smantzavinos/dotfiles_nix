@@ -23,7 +23,7 @@
       pkgs.lshw
       pkgs.fzf
       pkgs.fzf-zsh
-      pkgs.tmux
+      pkgs.tmuxPlugins.cpu
       pkgs.zsh-powerlevel10k
       pkgs.zplug
       pkgs.oh-my-zsh
@@ -94,6 +94,43 @@
       [[ ! -f ${"~/dotfiles/zsh/.p10k.zsh"} ]] || source ${"~/dotfiles/zsh/.p10k.zsh"}
     '';
   };
+
+  programs.tmux = {
+    enable = true;
+    sensibleOnTop = false;
+    shortcut = "a";
+    shell = "${pkgs.zsh}/bin/zsh";
+    extraConfig = ''
+        # unbind C-b
+        # set-option -g prefix C-a
+        # bind-key C-a send-prefix
+
+        # setw -g mouse on
+
+        # # Set the time in milliseconds for which tmux waits after an escape is input to
+        # # determine if it is part of a function or meta key sequences. The default is 500 milliseconds.
+        # # At 500 this causes and annoying delay in vim.
+        # set -sg escape-time 20
+
+        # # VI keys for movement, selection, and copying
+        # setw -g mode-keys vi
+        # bind-key -T copy-mode-vi v send -X begin-selection
+        # bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
+
+        # # Don't rename windows automatically
+        # set-option -g allow-rename off
+
+        # # Restore neovim sessions when restoring tmux sessions
+        # set -g @resurrect-strategy-nvim 'session'
+
+        # # Restore pane contents when restoring tmux sessions
+        # set -g @resurrect-capture-pane-contents 'on'
+
+
+        set -g status-right '#[fg=black,bg=color15] #{cpu_percentage}  %H:%M '
+        run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+    '';
+    };
 
   xdg.configFile."alacritty/alacritty.yml".text = ''
     shell:
