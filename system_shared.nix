@@ -9,9 +9,6 @@
     xkbOptions = "ctrl:nocaps";
   };
 
-  # steam
-  # TODO
-
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -21,4 +18,10 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
 }
