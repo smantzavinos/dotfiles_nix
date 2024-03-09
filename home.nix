@@ -13,6 +13,7 @@
       pkgs.cowsay
       pkgs.gh
       pkgs.jetbrains-mono
+      pkgs.nerdfonts
       pkgs.font-awesome
       pkgs.emacs-all-the-icons-fonts
       # pkgs.awesome-terminal-fonts
@@ -27,7 +28,6 @@
       pkgs.zsh-powerlevel10k
       pkgs.zplug
       pkgs.oh-my-zsh
-      pkgs.alacritty
       pkgs.google-chrome
       pkgs.nix-prefetch-github
     ];
@@ -101,6 +101,7 @@
     sensibleOnTop = false;
     shortcut = "a";
     shell = "${pkgs.zsh}/bin/zsh";
+    terminal = "xterm-256color";
     extraConfig = ''
         # unbind C-b
         # set-option -g prefix C-a
@@ -133,12 +134,29 @@
     '';
     };
 
-  xdg.configFile."alacritty/alacritty.yml".text = ''
-    shell:
-      program: /home/spiros/.nix-profile/bin/tmux
-      args:
-        - new-session
-        - zsh
-  '';
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      shell = {
+        program = "${pkgs.zsh}/bin/zsh";
+        args = [ "-c" "tmux attach || tmux new" ];
+      };
+      font = {
+        size = 10.0;
+        normal = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Regular";
+        };
+        bold = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Bold";
+        };
+        italic = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Italic";
+        };
+      };
+    };
+  };
 
 }
