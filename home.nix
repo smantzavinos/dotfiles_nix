@@ -55,11 +55,19 @@
     programs.neovim = {
       enable = true;
       vimAlias = true;
-      # vim config not working correctly.
-      # need a way to manage plugins
-      extraConfig = ''
-        source /home/spiros/vimfiles/_vimrc
-      '';
+      plugins = [
+        {
+          plugin = pkgs.vimPlugins.neovim-ayu;
+          type = "lua";
+          config = ''
+            vim.opt.termguicolors = true
+            require('ayu').setup({
+                mirage = true,
+            })
+            require('ayu').colorscheme()
+          '';
+        }
+      ];
     };
 
     programs.emacs = {
@@ -115,11 +123,17 @@
     sensibleOnTop = false;
     shortcut = "a";
     shell = "${pkgs.zsh}/bin/zsh";
-    terminal = "xterm-256color";
+    terminal = "tmux-256color";
     mouse = true;
     escapeTime = 20;
     keyMode = "vi";
     extraConfig = ''
+        # ensure correct 256 color support in each term type
+        set -g default-terminal "tmux-256color"
+        set-option -ga terminal-overrides ",alacritty:Tc"
+        set-option -ga terminal-overrides ",xterm-256color:Tc"
+        set-option -ga terminal-overrides ",tmux-256color:Tc"
+
         # # VI keys for movement, selection, and copying
         # setw -g mode-keys vi
         # bind-key -T copy-mode-vi v send -X begin-selection
@@ -133,7 +147,6 @@
 
         # # Restore pane contents when restoring tmux sessions
         # set -g @resurrect-capture-pane-contents 'on'
-
 
         set -g status-right '#[fg=black,bg=color15] #{cpu_percentage}  %H:%M '
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
