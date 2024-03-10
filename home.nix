@@ -32,8 +32,8 @@
       pkgs.google-chrome
 
       # epic games
-      pkgs.lutris
-      pkgs.wineWowPackages.full
+      # pkgs.lutris
+      # pkgs.wineWowPackages.full
 
     # fonts
       pkgs.nerdfonts
