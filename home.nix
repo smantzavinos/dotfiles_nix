@@ -112,6 +112,15 @@
             endfunction
           '';
         }
+        pkgs.vimPlugins.vim-fugitive
+        pkgs.vimPlugins.indentLine
+        {
+          plugin = pkgs.vimPlugins.nvim-surround;
+          type = "lua";
+          config = ''
+            require('nvim-surround').setup()
+          '';
+        }
       ];
     };
 
