@@ -121,6 +121,13 @@
             require('nvim-surround').setup()
           '';
         }
+
+        {
+          plugin = pkgs.vimPlugins.lightline-vim;
+          config = ''
+            set noshowmode
+          '';
+        }
       ];
     };
 
