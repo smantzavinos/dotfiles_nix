@@ -10,27 +10,41 @@
     };
 
     home.packages = [
+      # utils
       pkgs.cowsay
       pkgs.gh
-      pkgs.jetbrains-mono
-      pkgs.nerdfonts
-      pkgs.font-awesome
-      pkgs.emacs-all-the-icons-fonts
-      # pkgs.awesome-terminal-fonts
-      pkgs.material-icons
-      pkgs.weather-icons
       pkgs.fd
       pkgs.ripgrep
       pkgs.lshw
       pkgs.fzf
-      pkgs.fzf-zsh
+      pkgs.nix-prefetch-github
+
+      # tmux
       pkgs.tmuxPlugins.cpu
+
+      # zsh
       pkgs.zsh-powerlevel10k
       pkgs.zplug
       pkgs.oh-my-zsh
+      pkgs.fzf-zsh
+
+      # apps
       pkgs.google-chrome
-      pkgs.nix-prefetch-github
+
+      # epic games
+      pkgs.lutris
+      pkgs.wineWowPackages.full
+
+    # fonts
+      pkgs.nerdfonts
+      pkgs.font-awesome
+      pkgs.emacs-all-the-icons-fonts
+      pkgs.material-icons
+      pkgs.weather-icons
     ];
+
+    # auto reload fonts so you don't need to execute `fc-cache -f -v` manually after install
+    fonts.fontconfig.enable = true;
 
     programs.git = {
       enable = true;
