@@ -123,9 +123,15 @@
         }
 
         {
-          plugin = pkgs.vimPlugins.lightline-vim;
+          plugin = pkgs.vimPlugins.lualine-nvim;
+          type = "lua";
           config = ''
-            set noshowmode
+            require('lualine').setup({
+              options = {
+                theme = 'ayu_mirage',
+              },
+            })
+            vim.opt.showmode = false
           '';
         }
       ];
