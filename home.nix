@@ -226,6 +226,8 @@
 
             set -g @dracula-plugins "weather cpu-usage ram-usage battery"
             set -g @dracula-cpu-usage-colors "yellow dark_gray"
+            set -g @dracula-cpu-usage-label "\uf4bc"
+            set -g @dracula-ram-usage-label "\ue266"
             set -g @dracula-show-location false
         '';
       }
