@@ -222,6 +222,11 @@
             set -g @dracula-show-battery true
             set -g @dracula-show-powerline true
             set -g @dracula-refresh-rate 10
+            set -g @dracula-show-left-icon session
+
+            set -g @dracula-plugins "weather cpu-usage ram-usage battery"
+            set -g @dracula-cpu-usage-colors "yellow dark_gray"
+            set -g @dracula-show-location false
         '';
       }
     ];
