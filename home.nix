@@ -19,9 +19,6 @@
       pkgs.fzf
       pkgs.nix-prefetch-github
 
-      # tmux
-      pkgs.tmuxPlugins.cpu
-
       # zsh
       pkgs.zsh-powerlevel10k
       pkgs.zplug
@@ -215,9 +212,19 @@
         # # Restore pane contents when restoring tmux sessions
         # set -g @resurrect-capture-pane-contents 'on'
 
-        set -g status-right '#[fg=black,bg=color15] #{cpu_percentage}  %H:%M '
-        run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+        # set -g status-right '#[fg=black,bg=color15] #{cpu_percentage}  %H:%M '
+        # run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
     '';
+    plugins = with pkgs.tmuxPlugins; [
+      {
+        plugin = dracula;
+        extraConfig = ''
+            set -g @dracula-show-battery true
+            set -g @dracula-show-powerline true
+            set -g @dracula-refresh-rate 10
+        '';
+      }
+    ];
     };
 
   programs.alacritty = {
