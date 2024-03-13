@@ -179,6 +179,9 @@
     # Source the Powerlevel10k configuration if it exists
     initExtra = ''
       [[ ! -f ${"~/dotfiles/zsh/.p10k.zsh"} ]] || source ${"~/dotfiles/zsh/.p10k.zsh"}
+
+      # <C-backspace> binding
+      bindkey '^H' backward-kill-word
     '';
   };
 
