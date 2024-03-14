@@ -18,6 +18,7 @@
       pkgs.lshw
       pkgs.fzf
       pkgs.nix-prefetch-github
+      pkgs.jq
 
       # zsh
       pkgs.zsh-powerlevel10k
@@ -52,6 +53,9 @@
     programs.neovim = {
       enable = true;
       vimAlias = true;
+      extraLuaConfig = ''
+        vim.wo.number = true
+      '';
       plugins = [
         {
           plugin = pkgs.vimPlugins.neovim-ayu;
@@ -163,6 +167,8 @@
       zplug "asdf-vm/asdf", use:"asdf.plugin.zsh"
       zplug "junegunn/fzf", as:command, use:"bin/*", hook-build:"./install --bin"
       zplug "Aloxaf/fzf-tab", defer:2
+      zplug "zsh-users/zsh-autosuggestions", defer:2
+      zplug "chitoku-k/fzf-zsh-completions", defer:2
 
       # Install plugins if there are plugins that have not been installed yet
       if ! zplug check --verbose; then
@@ -182,6 +188,9 @@
 
       # <C-backspace> binding
       bindkey '^H' backward-kill-word
+
+      # <C-f> binding to complete a word in the auto suggestion
+      bindkey '^F' forward-word
     '';
   };
 
