@@ -19,6 +19,7 @@
       pkgs.fzf
       pkgs.nix-prefetch-github
       pkgs.jq
+      pkgs.glxinfo
 
       # zsh
       pkgs.zsh-powerlevel10k
