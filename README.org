@@ -45,7 +45,6 @@ gh repo auth login
 gh repo clone dotfiles
 gh repo clone vimfiles
 #+END_SRC
-
 ** Appendix
 *** Setting up NixOS
 **** Update NixOS version
@@ -96,6 +95,7 @@ Run the following command to install git
 sudo nixos-rebuild switch
 #+END_SRC
 
+**** System shared config
 clone the dotfiles_nix repo in the home directory.
 
 Edit the system configuration file again to import the shared system configuration file:
@@ -108,7 +108,43 @@ imports =
   ];
  ...
 #+END_SRC
+**** System specific config
+If the system config also includes a system specific config, include that file as well.
+***** Dell Precision T5600
+Edit /etc/nixos/configuration.nix
+#+BEGIN_SRC sh
+...
+imports =
+  [
+    ./hardware-configuration.nix
+    /home/spiros/dotfiles_nix/system_shared.nix
+    /home/spiros/dotfiles_nix/systems/precision_t5600.nix # add this line <------
+  ];
+ ...
+#+END_SRC
+***** Lenovo X1 Extreme Gen 2
+Set up the nixos-hardware channel
+#+BEGIN_SRC sh
+$ sudo nix-channel --add https://github.com/NixOS/nixos-hardware/archive/master.tar.gz nixos-hardware
+$ sudo nix-channel --update
+#+END_SRC
 
+Add [[https://github.com/NixOS/nixos-hardware][nixos-hardware]] config and system specific config.
+The nixos-hardware config correctly installs things like battery settings, screen DPI settings, and trackpad drivers.
+The system specific config also sets up nvidia drivers. I'm not sure why the nixos-hardware channel does not configure this. The nvidia drivers are set up for "sync mode". See the [[https://nixos.wiki/wiki/Nvidia][NixOS Nvidia Wiki]] for more information.
+#+BEGIN_SRC sh
+...
+imports =
+  [
+    ./hardware-configuration.nix
+    /home/spiros/dotfiles_nix/system_shared.nix
+    <nixos-hardware/lenovo/thinkpad/x1-extreme/gen2> # add this line <------
+    /home/spiros/dotfiles_nix/systems/lenovo_x1_extreme.nix # add this line <------
+  ];
+ ...
+#+END_SRC
+
+**** Apply system confg
 and rebuild NixOS again
 #+BEGIN_SRC sh
 sudo nixos-rebuild switch
