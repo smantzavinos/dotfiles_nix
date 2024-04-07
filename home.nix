@@ -242,6 +242,9 @@
             set -g @dracula-show-location false
         '';
       }
+      {
+        plugin = tmux-fzf;
+      }
     ];
     };
 
