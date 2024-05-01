@@ -28,6 +28,7 @@
 
       # apps
       pkgs.google-chrome
+      pkgs.libreoffice
 
       # epic games
       # pkgs.lutris
