@@ -19,6 +19,8 @@
       pkgs.fzf
       pkgs.nix-prefetch-github
       pkgs.jq
+      pkgs.glxinfo
+      pkgs.pciutils
 
       # zsh
       pkgs.zsh-powerlevel10k
@@ -240,6 +242,9 @@
             set -g @dracula-ram-usage-label "\ue266"
             set -g @dracula-show-location false
         '';
+      }
+      {
+        plugin = tmux-fzf;
       }
     ];
     };
