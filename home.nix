@@ -62,10 +62,10 @@
       extraLuaConfig = ''
         vim.wo.number = true
 
-	vim.api.nvim_set_keymap('n', '<C-m>', ':tabnext<CR>',
-				{noremap = true, silent = true})
-	vim.api.nvim_set_keymap('n', '<C-n>', ':tabprevious<CR>',
-				{noremap = true, silent = true})
+        vim.api.nvim_set_keymap('n', '<C-m>', ':tabnext<CR>',
+        {noremap = true, silent = true})
+        vim.api.nvim_set_keymap('n', '<C-n>', ':tabprevious<CR>',
+        {noremap = true, silent = true})
       '';
       plugins = [
         {
