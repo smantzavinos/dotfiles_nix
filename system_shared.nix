@@ -19,6 +19,9 @@
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
 
+  virtualisation.docker.enable = true;
+  users.users.spiros.extraGroups = [ "docker" ];
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
