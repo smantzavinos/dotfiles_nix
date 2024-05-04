@@ -57,6 +57,11 @@
       vimAlias = true;
       extraLuaConfig = ''
         vim.wo.number = true
+
+	vim.api.nvim_set_keymap('n', '<C-m>', ':tabnext<CR>',
+				{noremap = true, silent = true})
+	vim.api.nvim_set_keymap('n', '<C-n>', ':tabprevious<CR>',
+				{noremap = true, silent = true})
       '';
       plugins = [
         {
@@ -136,6 +141,9 @@
             })
             vim.opt.showmode = false
           '';
+        }
+        {
+          plugin = pkgs.vimPlugins.vim-tmux-navigator;
         }
       ];
     };
@@ -244,6 +252,9 @@
       }
       {
         plugin = tmux-fzf;
+      }
+      {
+        plugin = vim-tmux-navigator;
       }
     ];
     };
