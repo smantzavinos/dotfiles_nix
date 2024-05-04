@@ -30,6 +30,10 @@
 
       # apps
       pkgs.google-chrome
+      pkgs.libreoffice
+      pkgs.onedrive
+      pkgs.onedrivegui
+      pkgs.cryptomator
 
       # epic games
       # pkgs.lutris
