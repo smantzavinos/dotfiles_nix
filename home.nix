@@ -21,6 +21,7 @@
       pkgs.jq
       pkgs.glxinfo
       pkgs.pciutils
+      pkgs.dpkg
 
       # zsh
       pkgs.zsh-powerlevel10k
