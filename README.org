@@ -1,4 +1,5 @@
-
+* ARCHIVED
+NOTE: This repo has been archived and the content is now mainted in the nix directory of my [[https://github.com/smantzavinos/dotfiles][dotfiles repo]].
 * NixOS and Home Manager Configuration
 
 ** Overview
